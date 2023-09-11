@@ -1,13 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import Home from "./views/Home";
+import reportWebVitals from "./reportWebVitals";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Header from "./layouts/Header";
+import Hero from "./layouts/Hero";
+import { CategoriesContextProvider } from "./contexts/categories";
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/hola",
+    element: <h1>Hola</h1>,
+  },
+]);
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <App />
+    <CategoriesContextProvider>
+      <Header />
+      <Hero />
+      <RouterProvider router={router} />
+    </CategoriesContextProvider>
   </React.StrictMode>
 );
 
