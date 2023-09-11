@@ -20,6 +20,9 @@ const ExperiencesList = styled.ul`
   display: ${(props) => (props.isSelected ? "auto" : "flex")};
   width: 100%;
   display: ${(props) => (props.isSelected ? "auto" : "nowrap")};
+  @media (max-width: 768px) {
+    text-align: center;
+  }
 `;
 
 const Experience = styled.li`
