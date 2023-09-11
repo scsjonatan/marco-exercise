@@ -8,6 +8,7 @@ const TitleContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 `;
 
 const CategoryTitle = styled.h2`
@@ -35,14 +36,9 @@ const CaregorySlider = ({ category, isSelected }) => {
   const { title, id } = category;
   return (
     <div>
-      <TitleContainer>
+      <TitleContainer onClick={() => setSelectedCategory(id)}>
         <CategoryTitle>{title}</CategoryTitle>
-        {isSelected ? null : (
-          <ArrowForwardIosIcon
-            style={{ color: "#fff", cursor: "pointer" }}
-            onClick={() => setSelectedCategory(id)}
-          />
-        )}
+        {isSelected ? null : <ArrowForwardIosIcon style={{ color: "#fff" }} />}
       </TitleContainer>
       <ExperiencesList isSelected={isSelected}>
         {category.items.map((experiencie) => (
