@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import MarcoLogo from "../../assets/images/marco_logo.png";
+import MarcoLogo from "../assets/images/marco_logo.png";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const HeaderContainer = styled.header`

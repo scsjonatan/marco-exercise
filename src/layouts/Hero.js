@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { CategoriesContext } from "../../contexts/categories";
+import { CategoriesContext } from "../contexts/categories";
 
 const HeroContainer = styled.div`
   padding: 24px 24px 0;
