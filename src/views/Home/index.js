@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CaregorySlider from "./components/CategorySlider";
 import { CategoriesContext } from "../../contexts/categories";
 import styled from "styled-components";
@@ -8,12 +8,33 @@ const HomeContainer = styled.main`
 `;
 
 function Home() {
-  const { categories } = useContext(CategoriesContext);
+  const { categories, selectedCategory } = useContext(CategoriesContext);
+  const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    if (selectedCategory) {
+      const category = categories.find(
+        (category) => category.id === selectedCategory
+      );
+      setSelectedItem(category);
+    } else {
+      setSelectedItem(null);
+    }
+  }, [selectedCategory, categories]);
+
+  const renderCategorySlider = () => {
+    return categories.map((category) => (
+      <CaregorySlider key={category.id} category={category} />
+    ));
+  };
+
   return (
     <HomeContainer>
-      {categories.map((category) => (
-        <CaregorySlider key={category.id} category={category} />
-      ))}
+      {selectedItem ? (
+        <CaregorySlider isSelected category={selectedItem} />
+      ) : (
+        renderCategorySlider()
+      )}
     </HomeContainer>
   );
 }

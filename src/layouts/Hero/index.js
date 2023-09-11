@@ -27,17 +27,38 @@ const Caregory = styled.li`
   font-weight: 700;
   font-size: 14px;
   line-height: 15.4px;
+  background-color: ${(props) => (props.isSelected ? "#fff" : "transparent")};
+  color: ${(props) => (props.isSelected ? "#000" : "#fff")};
+  cursor: pointer;
 `;
 
 const Hero = () => {
-  const { categories } = useContext(CategoriesContext);
-  console.log(categories);
+  const { categories, selectedCategory, setSelectedCategory } =
+    useContext(CategoriesContext);
+
+  const handleClick = (id) => {
+    if (selectedCategory === id) {
+      setSelectedCategory(null);
+    } else {
+      setSelectedCategory(id);
+    }
+  };
+
   return (
     <HeroContainer>
       <HeroTitle>Explore Experiences</HeroTitle>
       <CategoriesContainer>
+        {selectedCategory && (
+          <Caregory onClick={() => setSelectedCategory(null)}>X</Caregory>
+        )}
         {categories.map(({ title, id }) => (
-          <Caregory key={id}>{title}</Caregory>
+          <Caregory
+            key={id}
+            onClick={() => handleClick(id)}
+            isSelected={selectedCategory === id}
+          >
+            {title}
+          </Caregory>
         ))}
       </CategoriesContainer>
     </HeroContainer>

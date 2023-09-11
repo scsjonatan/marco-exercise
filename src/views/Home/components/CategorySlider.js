@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ExperienceElement from "../../../components/ExperienceElement";
+import { CategoriesContext } from "../../../contexts/categories";
 
 const TitleContainer = styled.div`
   display: flex;
@@ -16,7 +17,7 @@ const CategoryTitle = styled.h2`
 
 const ExperiencesList = styled.ul`
   overflow: auto;
-  display: flex;
+  display: ${(props) => (props.isSelected ? "flex" : "flex")};
   width: 100%;
   white-space: nowrap;
 `;
@@ -25,15 +26,21 @@ const Experience = styled.li`
   margin-right: 24px;
 `;
 
-const CaregorySlider = ({ category }) => {
-  const { title } = category;
+const CaregorySlider = ({ category, isSelected }) => {
+  const { setSelectedCategory } = useContext(CategoriesContext);
+  const { title, id } = category;
   return (
     <div>
       <TitleContainer>
         <CategoryTitle>{title}</CategoryTitle>
-        <ArrowForwardIosIcon style={{ color: "#fff" }} />
+        {isSelected ? null : (
+          <ArrowForwardIosIcon
+            style={{ color: "#fff", cursor: "pointer" }}
+            onClick={() => setSelectedCategory(id)}
+          />
+        )}
       </TitleContainer>
-      <ExperiencesList>
+      <ExperiencesList isSelected={isSelected}>
         {category.items.map((experiencie) => (
           <Experience key={experiencie.id}>
             <ExperienceElement {...experiencie} />

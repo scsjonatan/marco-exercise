@@ -26,7 +26,7 @@ const ExperienceHost = styled.p`
   font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
-  margin-top: 5px;
+  margin-top: 0;
 `;
 
 const ExperienceElement = ({ title, img, host }) => {

@@ -14,19 +14,21 @@ const router = createBrowserRouter([
     element: <Home />,
   },
   {
-    path: "/hola",
-    element: <h1>Hola</h1>,
+    path: "*",
+    element: <div>404</div>,
   },
 ]);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <CategoriesContextProvider>
-      <Header />
-      <Hero />
-      <RouterProvider router={router} />
-    </CategoriesContextProvider>
+    <div style={{ maxWidth: "1300px", margin: "auto" }}>
+      <CategoriesContextProvider>
+        <Header />
+        <Hero />
+        <RouterProvider router={router} />
+      </CategoriesContextProvider>
+    </div>
   </React.StrictMode>
 );
 

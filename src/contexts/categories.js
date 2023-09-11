@@ -4,6 +4,7 @@ const CategoriesContext = createContext();
 
 const CategoriesContextProvider = ({ children }) => {
   const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -19,7 +20,9 @@ const CategoriesContextProvider = ({ children }) => {
   }, []);
 
   return (
-    <CategoriesContext.Provider value={{ categories }}>
+    <CategoriesContext.Provider
+      value={{ categories, selectedCategory, setSelectedCategory }}
+    >
       {children}
     </CategoriesContext.Provider>
   );
