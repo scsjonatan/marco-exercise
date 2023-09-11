@@ -17,13 +17,14 @@ const CategoryTitle = styled.h2`
 
 const ExperiencesList = styled.ul`
   overflow: auto;
-  display: ${(props) => (props.isSelected ? "flex" : "flex")};
+  display: ${(props) => (props.isSelected ? "auto" : "flex")};
   width: 100%;
-  white-space: nowrap;
+  display: ${(props) => (props.isSelected ? "auto" : "nowrap")};
 `;
 
 const Experience = styled.li`
   margin-right: 24px;
+  display: inline-table;
 `;
 
 const CaregorySlider = ({ category, isSelected }) => {
